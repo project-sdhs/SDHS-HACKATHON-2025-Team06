@@ -1,0 +1,208 @@
+      /* 1. 기본 및 변수 설정 */
+      :root {
+          --bg-color: #F8F8F8;
+          --input-bg-color: #E5E0D8;
+          /* Adjusted to match image */
+          --highlight-color: #785a66;
+          --text-color: #333;
+          --text-secondary-color: #8c8c8c;
+          --accent-color: #ef4f6a;
+          --main-bg-color: #F8F8F8;
+          /* Background color for the right panel */
+      }
+
+      * {
+          margin: 0;
+          padding: 0;
+          box-sizing: border-box;
+      }
+
+      a {
+          text-decoration: none;
+          color: #333;
+      }
+
+      body {
+          font-family: "Poppins", sans-serif;
+          background-color: var(--bg-color);
+          color: var(--text-color);
+          /* 페이지 중앙 정렬 */
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          min-height: 100vh;
+          overflow: hidden;
+          /* Prevent scrollbars */
+      }
+
+      /* 2. 메인 레이아웃 */
+      main {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          width: 100%;
+      }
+
+      .register-container {
+          width: 100vw;
+          height: 100vh;
+      }
+
+      .register-box {
+          display: flex;
+          width: 100vw;
+          height: 100vh;
+          background-color: var(--main-bg-color);
+          /* Use main-bg-color */
+          border-radius: 20px;
+          /* Kept for consistency, though image doesn't show it clearly */
+          overflow: hidden;
+      }
+
+      /* 3. 왼쪽 이미지 영역 */
+      .register-slide {
+          flex: 1;
+          /* Left side takes 50% width */
+          background: url("../map/img/한식.webp") no-repeat center center/cover;
+          position: relative;
+          filter: brightness(0.97) grayscale(0.05);
+          /* Keep original filters */
+      }
+
+      .reshadow {
+          height: 100vh;
+          width: 10vw;
+          position: absolute;
+          right: 0;
+          background: linear-gradient(90deg, rgba(255, 255, 255, 0) 0%, #F8F8F8 100%);
+      }
+
+      /* 4. 오른쪽 회원가입 폼 영역 */
+      .register-box-body {
+          flex: 1;
+          /* Right side takes 50% width */
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: flex-start;
+          padding: 60px 80px;
+          background: #F8F8F8;
+          /* Use main-bg-color */
+          min-width: 500px;
+          /* Ensure it doesn't shrink too much */
+      }
+
+      .register-box-body h1 {
+          font-size: 3rem;
+          font-weight: 800;
+          color: #222;
+          margin-bottom: 18px;
+      }
+
+      /* 5. 폼 및 입력창 스타일 */
+      form {
+          display: flex;
+          flex-direction: column;
+          gap: 24px;
+          width: 100%;
+          max-width: 500px;
+          margin-top: 32px;
+      }
+
+      input[type="text"],
+      input[type="number"] {
+          /* Apply to both text and number inputs */
+          background-color: var(--input-bg-color);
+          border: none;
+          border-radius: 12px;
+          height: 48px;
+          padding: 0 20px;
+          color: #333;
+          /* Text color inside input */
+          font-size: 0.9rem;
+          font-family: "Poppins", sans-serif;
+          width: 100%;
+          margin-bottom: 0;
+          /* Remove extra margin */
+      }
+
+      #category {
+          /* Apply to both text and number inputs */
+          background-color: var(--input-bg-color);
+          border: none;
+          border-radius: 12px;
+          height: 48px;
+          padding: 0 20px;
+          color: #333;
+          /* Text color inside input */
+          font-size: 0.9rem;
+          font-family: "Poppins", sans-serif;
+          width: 100%;
+          margin-bottom: 0;
+          /* Remove extra margin */
+      }
+
+      .input-row {
+          display: flex;
+          flex-direction: column;
+          gap: 10px;
+      }
+
+      .input-row label {
+          font-size: 1.1rem;
+          font-weight: 700;
+          color: #222;
+          margin-bottom: 6px;
+      }
+
+      /* Button container for history and recommendation */
+      .button-container {
+          display: flex;
+          justify-content: space-between;
+          /* Space out the elements */
+          align-items: center;
+          width: 100%;
+          margin-top: 50px;
+          /* Adjust spacing from inputs */
+      }
+
+      .button-container .history-link {
+          color: #333;
+          /* Darker text as in image */
+          font-size: 1.1rem;
+          /* Slightly larger font */
+          font-weight: 600;
+          /* Bolder */
+          display: flex;
+          align-items: center;
+          gap: 5px;
+          /* Space between text and arrow */
+      }
+
+      .button-container .history-link i {
+          font-size: 1.1rem;
+          /* Match text size */
+      }
+
+      #recommendation {
+          background-color: #ffe76a;
+          /* Yellow background from image */
+          color: #333;
+          /* Dark text for contrast */
+          font-size: 1.1rem;
+          font-weight: 600;
+          padding: 12px 25px;
+          /* Adjust padding to match button size in image */
+          border-radius: 12px;
+          /* Rounded corners */
+          border: none;
+          cursor: pointer;
+          box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+          /* Subtle shadow */
+          transition: background-color 0.3s ease;
+      }
+
+      #recommendation:hover {
+          background-color: #ffd900;
+          /* Slightly darker yellow on hover */
+      }

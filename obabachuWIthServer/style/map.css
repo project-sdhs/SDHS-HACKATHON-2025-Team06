@@ -1,0 +1,462 @@
+/* 1. 기본 및 변수 설정 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700;900&family=Poppins:wght@600;700&display=swap');
+
+:root {
+    --bg-color: #E5E0D8;
+    --card-bg-color: #D1A980;
+    --primary-color: #050504;
+    --highlight-color: #785a66;
+    --text-color: #E5E0D8;
+    --text-secondary-color: #8c8c8c;
+    --accent-color: #FFF287;
+    --shadow-color: rgba(0, 0, 0, 0.38);
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+/* 2. 상단 지도 Iframe */
+.map {
+    width: 100vw;
+    height: 100vh;
+    border: none;
+    display: block;
+    position: fixed;
+    z-index: 99;
+    right: 0;
+    transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    transition: 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+    transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+
+/* 위치 선택 */
+
+.wechi {
+    position: fixed;
+    inset: 0;
+    background-color: #333;
+    z-index: 1000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    display: none;
+}
+
+.wechi-content {
+    width: 50%;
+    height: 50%;
+    background-color: white;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+/* 지도 이동 버튼 */
+.mapMove {
+    position: fixed;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 1000;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--highlight-color);
+    border-radius: 10px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.mapMove:hover {
+    background-color: var(--primary-color);
+}
+
+/* 3. 메인 콘텐츠 컨테이너 */
+.container {
+    width: 100%;
+    height: 100vh;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 3rem 2rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    align-items: flex-start;
+    gap: 2rem;
+}
+
+/* 4. 왼쪽: 컨트롤 패널 */
+.control-panel {
+    grid-column: 1 / 2;
+    position: sticky;
+    top: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.control-panel h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.3;
+}
+
+.control-panel h1 span {
+    color: var(--primary-color);
+}
+
+.control-panel p {
+    color: var(--text-secondary-color);
+    font-size: 1rem;
+    margin-bottom: 1rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.form-group label {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--text-secondary-color);
+}
+
+.form-group select,
+.form-group input {
+    width: 100%;
+    height: 50px;
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--highlight-color);
+    border-radius: 10px;
+    padding: 0 1rem;
+    color: var(--text-color);
+    font-size: 1rem;
+    font-family: 'Noto Sans KR', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.form-group select:focus,
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 10px rgba(237, 141, 141, 0.2);
+}
+
+.submit-btn {
+    background: var(--accent-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 8px 20px var(--shadow-color);
+}
+
+
+/* --- [추가] 구분선 스타일 --- */
+.or-separator {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: var(--text-secondary-color);
+    margin: 0.5rem 0;
+}
+
+.or-separator::before,
+.or-separator::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid var(--highlight-color);
+}
+
+.or-separator:not(:empty)::before {
+    margin-right: .5em;
+}
+
+.or-separator:not(:empty)::after {
+    margin-left: .5em;
+}
+
+
+/* --- [추가] 랜덤 추천 버튼 스타일 --- */
+.random-btn {
+    background: transparent;
+    color: var(--text-secondary-color);
+    border: 2px solid var(--highlight-color);
+    border-radius: 10px;
+    padding: 1rem;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+
+
+
+/* 5. 중앙: 음식 디스플레이 & 정보 */
+.food-display {
+    grid-column: 2 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.food-image-wrapper {
+    width: 100%;
+    max-width: 350px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    border: 5px solid var(--card-bg-color);
+    margin-bottom: 2rem;
+}
+
+.food-image-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 50%;
+}
+
+.food-title {
+    font-size: 2.8rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.7);
+}
+
+.food-category {
+    font-size: 1.1rem;
+    background-color: var(--primary-color);
+    color: var(--bg-color);
+    padding: 0.3rem 1.2rem;
+    border-radius: 20px;
+    font-weight: 700;
+    margin-top: 0.5rem;
+}
+
+.info-panel {
+    background-color: var(--card-bg-color);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--highlight-color);
+    margin-top: 2rem;
+    /* 이미지와 간격 */
+}
+
+.info-panel h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.restaurant-info {
+    min-height: 100px;
+}
+
+.disclaimer {
+    margin-top: 1.5rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--highlight-color);
+    text-align: center;
+}
+
+.disclaimer h3 {
+    font-size: 0.8rem;
+    color: #333;
+}
+
+/* 6. 오른쪽: 메뉴 정보 */
+.menu-info {
+    grid-column: 3 / 4;
+    background-color: var(--card-bg-color);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    border: 1px solid var(--highlight-color);
+}
+
+.menu-info h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    color: var(--primary-color);
+}
+
+.menu-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    overflow: auto;
+    height: 500px;
+}
+
+.menu-item {
+    background-color: var(--bg-color);
+    border-radius: 10px;
+    padding: 1.2rem;
+}
+
+.menu-item h3 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.menu-item .price {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+.menu-item .desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary-color);
+    line-height: 1.5;
+}
+
+/* === [추가] 식당 메뉴/길찾기 버튼 및 지도 오버레이 스타일 === */
+.restaurant-actions {
+    display: flex;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+    justify-content: center;
+}
+
+.action-btn {
+    background: linear-gradient(90deg, #FFF287 0%, #E5E0D8 100%);
+    color: #748873;
+    border: none;
+    border-radius: 12px;
+    padding: 0.9rem 2.2rem;
+    font-size: 1.1rem;
+    font-weight: 700;
+    box-shadow: 0 4px 16px rgba(209, 169, 128, 0.13);
+    cursor: pointer;
+    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    outline: none;
+}
+
+.action-btn.menu {
+    background: linear-gradient(90deg, #FFF287 0%, #F8F8F8 100%);
+    color: #D1A980;
+}
+
+.action-btn.route {
+    background: linear-gradient(90deg, #E5E0D8 0%, #FFF287 100%);
+    color: #748873;
+}
+
+.action-btn:hover {
+    background: #D1A980;
+    color: #fff;
+    box-shadow: 0 6px 24px rgba(209, 169, 128, 0.22);
+}
+
+/* 지도 오버레이(모달) */
+.map-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(248, 248, 248, 0.95);
+    z-index: 2000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 0.3s;
+}
+
+.map-overlay .map-modal {
+    background: #FFF287;
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(209, 169, 128, 0.18);
+    padding: 2.5rem 2rem 2rem 2rem;
+    min-width: 340px;
+    min-height: 340px;
+    max-width: 90vw;
+    max-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+.map-overlay .close-btn {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    background: #E5E0D8;
+    color: #748873;
+    border: none;
+    border-radius: 50%;
+    width: 2.2rem;
+    height: 2.2rem;
+    font-size: 1.3rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.map-overlay .close-btn:hover {
+    background: #D1A980;
+    color: #fff;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+/* 지도 iframe 스타일 (오버레이 내) */
+.map-modal iframe {
+    width: 90vw;
+    max-width: 600px;
+    height: 60vh;
+    border: 2px solid #D1A980;
+    border-radius: 16px;
+    background: #F8F8F8;
+    margin-top: 1.2rem;
+}
+
+.menu-info {
+    position: fixed;
+    z-index: 1000;
+    width: 500px;
+    right: 10px;
+    top: 10px;
+}

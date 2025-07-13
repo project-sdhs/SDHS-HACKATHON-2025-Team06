@@ -1,0 +1,210 @@
+        /* 1. 기본 설정 및 변수 */
+        :root {
+            --bg-color: #F8F8F8;
+            --card-bg-color: #EADFD1;
+            --menu-item-bg: #FFFFFF;
+            --primary-text: #333333;
+            --secondary-text: #555555;
+            --star-color: #FFC700;
+            --button-bg: #FFE76A;
+            --button-hover-bg: #ffd900;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        a {
+            color: #333333;
+        }
+
+        body {
+            font-family: 'Poppins', 'Noto Sans KR', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--primary-text);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 2. 메인 레이아웃 */
+        .main-container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+            margin: auto;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+        }
+
+        /* 3. 왼쪽 이미지 패널 */
+        .left-panel {
+            flex-basis: 50%;
+            position: relative;
+            background-image: url('https://images.unsplash.com/photo-1512152272829-e3139592d56f?q=80&w=2070&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* 이미지와 콘텐츠 사이의 자연스러운 그림자 효과 */
+        .left-panel::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: -1px;
+            /* 경계선이 겹치지 않도록 조정 */
+            height: 100%;
+            width: 200px;
+            /* 그라데이션 너비 증가 */
+            background: linear-gradient(to right, rgba(248, 248, 248, 0) 0%, var(--bg-color) 80%);
+        }
+
+        /* 4. 오른쪽 콘텐츠 패널 */
+        .right-panel {
+            flex-basis: 50%;
+            background-color: var(--bg-color);
+            padding: 4rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow-y: auto;
+            /* 콘텐츠가 많아지면 스크롤 */
+        }
+
+        .content-header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            color: #222;
+        }
+
+        .content-header h2 {
+            font-size: 2.25rem;
+            font-weight: 700;
+            color: #444;
+            margin-top: 0.25rem;
+        }
+
+        .restaurants-list {
+            margin-top: 2.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+
+        /* 5. 식당 카드 스타일 */
+        .restaurant-card {
+            background-color: var(--card-bg-color);
+            padding: 1.5rem;
+            border-radius: 1rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* 호버 효과를 위한 transition */
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            /* 마우스 올리면 살짝 위로, 커지는 효과 */
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .card-header h3 {
+            font-size: 1.25rem;
+            font-weight: 700;
+        }
+
+        .rating {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+        }
+
+        .rating svg {
+            width: 1.25rem;
+            height: 1.25rem;
+            fill: var(--star-color);
+        }
+
+        .rating span {
+            font-weight: 700;
+            font-size: 1rem;
+            color: var(--secondary-text);
+        }
+
+        .menu-items {
+            margin-top: 1rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+            gap: 1rem;
+        }
+
+        .menu-item {
+            background-color: var(--menu-item-bg);
+            padding: 0.75rem;
+            border-radius: 0.75rem;
+            text-align: center;
+        }
+
+        .menu-item .menu-title {
+            font-weight: 700;
+            font-size: 0.875rem;
+            color: var(--primary-text);
+        }
+
+        .menu-item .menu-desc {
+            font-size: 0.75rem;
+            color: #666;
+            margin-top: 0.25rem;
+        }
+
+        /* 6. 푸터 영역 */
+        .content-footer {
+            margin-top: 2rem;
+            padding-top: 1rem;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .history-link {
+            font-weight: 600;
+            color: var(--secondary-text);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .history-link:hover {
+            color: var(--primary-text);
+        }
+
+        .find-button {
+            background-color: var(--button-bg);
+            color: var(--primary-text);
+            font-weight: 700;
+            font-size: 1rem;
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 0.75rem;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .find-button:hover {
+            background-color: var(--button-hover-bg);
+            transform: translateY(-2px);
+        }

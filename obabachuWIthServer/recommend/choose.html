@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오밥추 - 오늘 뭐 먹지?</title>
+    <link rel="stylesheet" href="../style/recommend.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+        xintegrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+
+<body>
+    <main>
+        <div class="register-container">
+            <div class="register-box">
+                <div class="register-slide">
+                    <div class="reshadow"></div>
+                </div>
+
+                <div class="register-box-body">
+                    <h1>Ohbabchu</h1> <!-- Corrected case -->
+                    <h1>Choose as you like</h1>
+                    <form onsubmit="return false">
+                        <div class="input-row">
+                            <label for="type">Category</label>
+                            <!-- Changed to input type="text" to match image visual -->
+                            <select id="category" class="type">
+                                <option value="한식">한식</option>
+                                <option value="중식">중식</option>
+                                <option value="일식">일식</option>
+                                <option value="양식">양식</option>
+                                <option value="분식">분식</option>
+                                <option value="주점">주점</option>
+                                <option value="치킨">치킨</option>
+                                <option value="카페/디저트">카페/디저트</option>
+                            </select>
+                        </div>
+                        <div class="input-row">
+                            <label for="budget">budget</label>
+                            <input type="number" id="budget" placeholder="예산" min="0" step="1000" style="color: #333;"
+                                required>
+                        </div>
+
+                        <div class="button-container">
+                            <!-- Changed to match image text and removed icon -->
+                            <a href="#" class="history-link">history <i class="fa fa-arrow-right"></i></a>
+                            <!-- Changed select to a button-like link to match image -->
+                            <button></button>
+                            <input type="submit" value="select" class="submit-button" id="recommendation">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="../script/foodSelect.js"></script>
+
+    <!-- No external script needed for this static page -->
+</body>
+
+</html>

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>오밥추 - 오늘 뭐 먹지?</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css"
+        integrity="sha512-10/jx2EXwxxWqCLX/hHth/vu2KY3jCF70dCQB8TSgNjbCVAC/8vai53GfMDrO2Emgwccf2pJqxct9ehpzG+MTw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../style/survey.css" />
+    <link rel="stylesheet" href="../style/loading.css" />
+</head>
+
+
+<main>
+    <div class="register-container">
+        <div class="register-box">
+            <div class="register-slide">
+                <div class="reshadow"></div>
+            </div>
+
+
+            <div class="register-box-body">
+                <form action="" onsubmit="location.href = '../index.php'; return false;">
+                    <label for="food-type">자신이 선호하는 음식의 종류</label>
+                    <select name="food-type" id="food-type" required>
+                        <option value="한식">한식</option>
+                        <option value="중식">중식</option>
+                        <option value="일식">일식</option>
+                        <option value="양식">양식</option>
+                        <option value="분식">분식</option>
+                        <option value="주점">주점</option>
+                        <option value="치킨">치킨</option>
+                        <option value="카페/디저트">카페/디저트</option>
+                    </select>
+
+                    <label for="Notfood-type">자신이 선호하지 않는 음식의 종류</label>
+                    <select name="Notfood-type" id="Notfood-type" required>
+                        <option value="한식">한식</option>
+                        <option value="중식">중식</option>
+                        <option value="일식">일식</option>
+                        <option value="양식">양식</option>
+                        <option value="분식">분식</option>
+                        <option value="주점">주점</option>
+                        <option value="치킨">치킨</option>
+                        <option value="카페/디저트">카페/디저트</option>
+                    </select>
+
+
+                    <div class="submit">
+                        <input type="submit" value="NEXT">
+                    </div>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<script src="./script/script.js"></script>
+</body>
+
+</html>
